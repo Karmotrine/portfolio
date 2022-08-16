@@ -19,7 +19,8 @@ export const useBlogs = (pageNumber?: number) => {
     const variables = {
         totalOffset:totalOffset,
     }
-    return useGQLQuery(["blogs", page], GET_POSTS, variables, {keepPreviousData : false});
+    return useGQLQuery(["blogs", page], GET_POSTS, variables);
+    // {keepPreviousData : false}
 }
 
 //const { status, data, error, isFetching } = useBlog(id);
