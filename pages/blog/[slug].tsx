@@ -5,6 +5,8 @@ import { useBlog } from "../../lib/hooks/useBlog"
 import { MDXRemote } from "next-mdx-remote"
 import { serialize } from 'next-mdx-remote/serialize'
 import Test from "../../components/Test"
+import Container from "../../components/Container"
+import { Suspense } from "react"
 
 const mdComponents = { Test }
 
@@ -77,9 +79,13 @@ export default function BlogPostPage(props:any) {
     const body = data.content
     return (
         <>
-            Test for {data.title}
-            <p>Date:{new Date(data.publishedDate).toLocaleDateString()}</p>
-            <MDXRemote {...body} components={mdComponents} />
+            <Container>
+                <Suspense>
+                    Test for {data.title}
+                    <p>Date:{new Date(data.publishedDate).toLocaleDateString()}</p>
+                    <MDXRemote {...body} components={mdComponents} />
+                </Suspense>
+            </Container>
         </>
     )
 }

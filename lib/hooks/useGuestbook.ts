@@ -11,5 +11,5 @@ export const getGuestBook = async () => {
 }
 
 export default function useGuestbook() {
-    return useQuery(["guestbook"], getGuestBook);
+    return useQuery(["guestbook"], getGuestBook, {refetchOnWindowFocus: false});
 }

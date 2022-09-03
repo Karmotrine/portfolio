@@ -3,6 +3,9 @@ import gql from "graphql-tag";
 import { request } from "graphql-request";
 import { NextPageContext } from "next";
 import { useProjects } from "../lib/hooks/useProjects";
+import Container from "../components/Container";
+import ProjectCard from "../components/ProjectCard";
+import { Suspense } from "react";
 
 function fetchProjects() {
     const endpoint = process.env.NEXT_PUBLIC_SANITY_GRAPHQL_API || ""
@@ -48,14 +51,22 @@ export async function getServerSideProps(ctx : any) {
 
 export default function ProjectPage(props:any) {
     const { status, data, error, isFetching, isLoading } = useProjects()
-    if (isLoading) 
+/*     if (isLoading) 
         return <p>Loading...</p>
     if (props.isError) 
-        return <p>Error! : {props.errorMsg}</p>
+        return <p>Error! : {props.errorMsg}</p> */
     return (
         <>
-            <p>Project Page</p>
-            {data.allProject.map((item:any, key:number) => (<p key={key}>{JSON.stringify(item)}</p>))}
+            <Container>
+                <div className="container flex flex-col min-w-lg max-w-2xl mx-auto mb-16">
+                    <h1 className="uppercase tracking-tighter drop-shadow-nier text-6xl mb-4">Projects</h1>
+                    <Suspense>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-24">
+                        {data?.allProject.map((item:any, key:number) => (<ProjectCard key={`projCard#${key}`}{...item}/>))}
+                    </div>
+                    </Suspense>
+                </div>
+            </Container>
         </>
     )
 }
