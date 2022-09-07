@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import ActionButton from './ActionButton'
+import Badge from './Badge'
 
 interface TProjectCard {
     title: string
@@ -15,19 +16,19 @@ interface TProjectCard {
 }
 export default function ProjectCard(props:TProjectCard) {
     return (
-    <div className="w-full bg-transparent shadow-nier border-beige-400 border" >
+    <div className="w-full bg-transparent shadow-nier border-beige-400 border flex flex-col justify-between" >
         <div className="flex flex-row h-fit bg-black w-full text-white py-1 pl-2 space-x-2 text-sm leading-none">
             <div className="w-4 h-4 bg-brown-300"></div>
             <h2>{props.title}</h2>
         </div>
-        <div className="min-w-full h-fit p-3">
+        <div className=" min-w-full p-3 h-full">
             <Image src={props.projImage.asset.url} alt={props.title} width="328" height="190"/>
             <p>{props.description}</p>
             <hr className="border bg-black border-black my-1"/>
-            <ul>
-                {props.stackTags.map((item, key)=> (<li key={key}>{item}</li>))}
+            <ul className="flex flex-row space-x-2">
+                {props.stackTags.map((item, key)=> (<Badge key={key}>{item}</Badge>))}
             </ul>
-            <div className="flex flex-row mt-2">
+            <div className="justify-self-end flex flex-row mt-2">
                 <a href={props.siteUrl} rel="noopener noreferrer" target="_blank" className="w-full group h-8 mr-2">
                     <div className="flex h-full justify-center bg-yellow-400 transition-all group-hover:bg-red-700">
                         <div className="grid h-full w-11/12 place-content-center border-x-4 border-red-700 transition-all group-hover:border-yellow-400">

@@ -7,7 +7,6 @@ module.exports = {
   darkMode: 'class',
   theme: {
     extend: {
-      darkMode: 'class',
       colors: {
         'blue-opaque': 'rgb(13 42 148 / 18%)',
         gray: {
@@ -75,10 +74,16 @@ module.exports = {
       },
       backgroundSize : {
         'szgrid' : `0.2rem 0.2rem`
+      },
+      fontFamily: {
+        lato:['Lato']
       }
     },
   },
   plugins: [
     require('@tailwindcss/line-clamp'),
   ],
+  corePlugins: {
+    fontFamily:true
+  }
 }

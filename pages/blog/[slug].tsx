@@ -7,6 +7,8 @@ import { serialize } from 'next-mdx-remote/serialize'
 import Test from "../../components/Test"
 import Container from "../../components/Container"
 import { Suspense } from "react"
+import Badge from "../../components/Badge"
+import Image from "next/image"
 
 const mdComponents = { Test }
 
@@ -30,9 +32,19 @@ async function fetchBlog(slug:string) {
     const GET_POST = gql`
         query($thisSlug: String!) {
             allPage(where: { slug: {current: { eq: $thisSlug } }}) {
-                title
+                title, 
+                publishedDate, 
+                slug {
+                    current
+                }, 
+                tag, 
+                cover {
+                    asset {
+                        url
+                    }
+                },
+                excerpt,
                 content
-                publishedDate
             }
         }
     `
@@ -81,9 +93,18 @@ export default function BlogPostPage(props:any) {
         <>
             <Container>
                 <Suspense>
-                    Test for {data.title}
-                    <p>Date:{new Date(data.publishedDate).toLocaleDateString()}</p>
+                <div className="md:h-[44rem] container flex flex-col min-w-lg max-w-2xl mx-auto mb-16">
+                    <Badge>{data.tag}</Badge>
+                    <h1 className="text-4xl md:text-7xl font-lato font-bold">{data.title}</h1>
+                    <div className="flex flex-col md:flex-row md:space-x-8 mt-2">
+                        <span className="text-md font-lato font">Yuan Ureña</span>
+                        <span className="text-md font-lato">{new Date(data.publishedDate).toLocaleDateString()}</span>
+                    </div>
+                    <div className="relative aspect-video w-full mb-8 mt-2">
+                        <Image src={data.cover.asset.url} layout="fill" objectFit="cover" priority={true}/>
+                    </div>
                     <MDXRemote {...body} components={mdComponents} />
+                </div>
                 </Suspense>
             </Container>
         </>

@@ -10,9 +10,7 @@ export const useBlogs = (pageNumber?: number) => {
     const GET_POSTS = gql`
         query AllPages($totalOffset: Int!){
             allPage(limit:5, offset:$totalOffset, sort:[{_createdAt: DESC}]){
-                slug {
-                    current
-                }
+                title, publishedDate, slug {current}, tag, cover {asset{url}}, excerpt
             }
         }
     `;

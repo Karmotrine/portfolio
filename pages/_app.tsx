@@ -17,15 +17,16 @@ function MyApp({ Component, pageProps }: AppProps) {
     })
   })
   return (
-    <ThemeProvider attribute="class">
       <QueryClientProvider client={queryClient}>
         <Hydrate state={pageProps.dehydratedState}>
           <Component {...pageProps} />
         </Hydrate>
-        <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
-    </ThemeProvider>
   )
 }
+/**
+ * <ThemeProvider attribute="class"></ThemeProvider>
+ *  <ReactQueryDevtools initialIsOpen={false} />
+ */
 
 export default MyApp

@@ -88,9 +88,9 @@ export default function GuestBookPage(props:any) {
                 <Suspense>
                         {!isLoading && !isRefetching ? Array.isArray(data) && data.map((item,key) => {
                             return (
-                                <section key={`comment#${key}`}className="relative mt-7 border-2 border-black bg-yellow-300 p-4">
-                                    <span className="absolute -top-2.5 bg-purple-400 leading-none py-0.5 text-sm">{item?.name}@{item.created_at}</span>
-                                    <p className="break-all ">{/*JSON.stringify(item)*/item.text}</p>
+                                <section key={`comment#${key}`}className="relative mt-7 border-2 border-black bg-black/10 p-4">
+                                    <span className="absolute -top-2.5 bg-amber-500 leading-none py-0.5 text-sm">{item?.name}@{formatDate(item.created_at)}</span>
+                                    <p className="break-all">{/*JSON.stringify(item)*/item.text}</p>
                                     {user?.id === item.uid &&
                                      <button
                                         onClick={(e) => {
@@ -111,6 +111,13 @@ export default function GuestBookPage(props:any) {
         </Container>
     )
 }
+
+function formatDate(date:Date) {
+    const tDate = new Date(date);
+    // returns mm/dd/yyyy string
+    return (`${tDate.getMonth()}/${tDate.getDate()}/${tDate.getFullYear()}`)
+}
+
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
     const { user } = await supabase.auth.api.getUserByCookie(req);

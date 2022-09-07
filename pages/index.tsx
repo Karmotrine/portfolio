@@ -5,10 +5,12 @@ import Image from 'next/image'
 import NavButton from '../components/NavButton';
 import InnerContainer from '../components/InnerContainer';
 import TechStack from '../components/TechStack';
+import { Suspense, useEffect, useState } from 'react';
 
 const Home: NextPage = () => {
+
   return (
-    <>
+    <Suspense fallback={null}>
       <Container>
         <div className="flex flex-col justify-start items-start max-w-2xl border-gray-200 dark:border-gray-700 mx-auto pb-16 space-y-6">
         <h1 className="uppercase tracking-tighter drop-shadow-nier text-6xl">Home</h1>
@@ -30,12 +32,12 @@ const Home: NextPage = () => {
             </div>
         </div>
         </InnerContainer>
-        <TechStack />
+        {<TechStack />}
         <InnerContainer title="Featured Projects">Test</InnerContainer>
         <InnerContainer title="Featured Posts">Test</InnerContainer>
         </div> 
       </Container>
-    </>
+    </Suspense>
   );
 };
 
