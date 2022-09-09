@@ -9,6 +9,8 @@ import Container from "../../components/Container"
 import { Suspense } from "react"
 import Badge from "../../components/Badge"
 import Image from "next/image"
+import rehypePrism from 'rehype-prism-plus';
+import rehypeCodeTitles from 'rehype-code-titles';
 
 const mdComponents = { Test }
 
@@ -67,7 +69,16 @@ export async function getStaticProps(ctx:any) {
     const slug = Array.isArray(ctx.params.slug) ? ctx.params.slug[0] : ctx.params.slug;
     const queryClient = new QueryClient()
     const res = await fetchBlog(slug!)
-    const data = {...res.allPage[0], content: await serialize(res.allPage[0].content)}
+    const data = {
+        ...res.allPage[0],
+        content: await serialize(res.allPage[0].content, {
+            mdxOptions: {
+                rehypePlugins : [
+                    rehypeCodeTitles,
+                    rehypePrism
+                ]
+            }
+        })}
     let isError = false;
     let errorMessage = "";
     try {
@@ -93,7 +104,7 @@ export default function BlogPostPage(props:any) {
         <>
             <Container>
                 <Suspense>
-                <div className="md:h-[44rem] container flex flex-col min-w-lg max-w-2xl mx-auto mb-16">
+                <div className="min-h-fit container flex flex-col min-w-lg max-w-2xl mx-auto mb-16">
                     <Badge>{data.tag}</Badge>
                     <h1 className="text-4xl md:text-7xl font-lato font-bold">{data.title}</h1>
                     <div className="flex flex-col md:flex-row md:space-x-8 mt-2">

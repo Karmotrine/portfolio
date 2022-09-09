@@ -1,12 +1,18 @@
 import { useTheme } from 'next-themes';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ReactNode } from 'react';
 import NextLink from 'next/link';
 import cn from 'classnames';
 import Footer from './Footer';
 import NavButton from './NavButton';
 import { HOME, GUESTBOOK, BLOG, PROJECTS } from "./ContainerIcons"
+
+interface TNavItem {
+    href : string
+    name : string
+    icon : ReactNode
+}
 
 const NAV_LINKS = [
     {
@@ -32,7 +38,7 @@ const NAV_LINKS = [
     //{href: "", name:""},
 ]
 
-function NavItem({href, name, icon}) {
+function NavItem({href, name, icon} : TNavItem) {
     const router = useRouter();
     const isActive = router.asPath === href;
 
@@ -106,7 +112,7 @@ export default function Container(props:any) {
                     <nav className="flex w-full relative max-w-4xl border-gray-200 dark:border-gray-700 mx-auto pt-8 pb-8 sm:pb-16  text-gray-900 dark:text-gray-100" > {/* bg-gray-250  dark:bg-gray-900 bg-opacity-60*/}
                         <div className="flex items-center justify-between w-full relative max-w-4xl border-b-2 padding pb-2 border-gray-800 padding p-1 space-x-2" >
                         <div className="flex items-start w-full relative max-w-xl space-x-2" >
-                            <div className="flex flex-row space-x-2 mr-3 content-center">
+                            <div className="flex-row space-x-2 mr-3 content-center hidden md:flex">
                                 <div className="w-3 h-12 bg-black"></div>
                                 <div className="w-1 h-12 bg-black"></div>
                             </div>
@@ -114,7 +120,7 @@ export default function Container(props:any) {
                                 <NavItem key={`NavItem#${key}`} href={item.href} name={item.name} icon={item.icon}/>
                             ))}
                         </div>
-
+                        {/* <MobileMenu /> */}
                         </div>
                     </nav>
                 </div>

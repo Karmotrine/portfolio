@@ -23,10 +23,10 @@ export default function ProjectCard(props:TProjectCard) {
         </div>
         <div className=" min-w-full p-3 h-full">
             <Image src={props.projImage.asset.url} alt={props.title} width="328" height="190"/>
-            <p>{props.description}</p>
+            <p className="text-sm font-lato">{props.description}</p>
             <hr className="border bg-black border-black my-1"/>
-            <ul className="flex flex-row space-x-2">
-                {props.stackTags.map((item, key)=> (<Badge key={key}>{item}</Badge>))}
+            <ul className="flex flex-row flex-wrap">
+                {props.stackTags.map((item, key)=> (<div key={key} className="mr-2 mb-1"><Badge >{item}</Badge></div>))}
             </ul>
             <div className="justify-self-end flex flex-row mt-2">
                 <a href={props.siteUrl} rel="noopener noreferrer" target="_blank" className="w-full group h-8 mr-2">

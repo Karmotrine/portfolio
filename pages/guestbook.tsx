@@ -50,9 +50,9 @@ export default function GuestBookPage(props:any) {
             <div className="container flex flex-col min-w-lg max-w-2xl mx-auto mb-16">
             <h1 className="uppercase tracking-tighter drop-shadow-nier text-6xl mb-4">Guestbook</h1>
                 <InnerContainer title="Guestbook">
-                    <p>Hi {metadata?.full_name}</p>
-                    <p>email: {metadata?.email}</p>
-
+                    <div className="pl-4 py-4">
+                    <p className="font-lato text-4xl font-bold mb-4">Say something!</p>
+                    <p className="font-lato text-sm mb-4">Leave your mark on my site below.</p>
                     {!metadata ? 
                     <button className="cursor-pointer group" onClick={() => signInWithTwitter()}>
                         <div className="flex h-10 w-40 justify-center bg-beige-400 transition-all group-hover:bg-brown-800">
@@ -83,6 +83,7 @@ export default function GuestBookPage(props:any) {
                                 </svg>
                             </button>
                     </form>}
+                    </div>
                 </InnerContainer>
                 <div>
                 <Suspense>

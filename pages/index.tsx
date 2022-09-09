@@ -6,9 +6,12 @@ import NavButton from '../components/NavButton';
 import InnerContainer from '../components/InnerContainer';
 import TechStack from '../components/TechStack';
 import { Suspense, useEffect, useState } from 'react';
+import { supabase } from '../lib/supabase';
 
 const Home: NextPage = () => {
-
+  const { publicURL: resumeURL, error } = supabase.storage
+                                          .from('public')
+                                          .getPublicUrl('URENA_RESUME.pdf');
   return (
     <Suspense fallback={null}>
       <Container>
@@ -23,9 +26,16 @@ const Home: NextPage = () => {
               <h2 className="text-gray-700 dark:text-gray-200 mb-4">
                 Freelance Full-stack Web Developer
               </h2>
-              <p className="text-gray-600 dark:text-gray-400 mb-16">
+              <p className="text-gray-600 dark:text-gray-400 mb-4">
                 Currently studying Computer Science at the Polytechnic University of the Philippines - Sta. Mesa.
               </p>
+              {!error && <a href={resumeURL!} target="_blank" rel="noreferrer" download="URENA_RESUME.pdf" className="group mb-16 w-fit">
+                  <div className="flex h-10 w-40 justify-center bg-beige-400 transition-all group-hover:bg-brown-800">
+                      <div className="grid h-10 w-11/12 place-content-center border-x-4 border-brown-800 transition-all group-hover:border-beige-400">
+                          <span className="text-brown-800 group-hover:text-beige-400 font-semibold">Get CV</span>
+                      </div>
+                  </div>
+              </a>}
             </div>
             <div className="w-[80px] sm:w-[276px] relative mb-8 sm:mb-0 mr-auto">
               <Image src="/avatar.webp" width={276} height={276}layout="responsive" alt="Avatar" className="rounded-full" />
