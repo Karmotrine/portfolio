@@ -10,6 +10,7 @@ import { useBlogs } from "../../lib/hooks/useBlogs"
 import Link from 'next/link';   
 import usePagination from "../../lib/hooks/usePagination";
 import Pagination from "../../components/Pagination";
+import Loader from "../../components/Loader";
 /**
  * @see https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration#on-demand-revalidation
  */
@@ -107,12 +108,13 @@ export default function BlogCatalog({errorMsg, isError}:BlogProps) {
         setPage(pageParams !== undefined ? parseInt(pageParams!) : 1)
         refetch()
     }, [router.query,router.isReady, pageParams, refetch])
+
     return (
         <>
             <Container>
                 <div className="md:h-[44rem] container flex flex-col min-w-lg max-w-2xl mx-auto mb-16">
                     <h1 className="uppercase tracking-tighter drop-shadow-nier text-6xl mb-4">Blog</h1>
-                    <Suspense>
+                    <Suspense fallback={<Loader/>}>
                         <div className="flex flex-row w-full grow">
                             <div className="hidden md:flex flex-row space-x-2 h-full mr-2">
                                 <div className="w-3 h-full bg-black"></div>

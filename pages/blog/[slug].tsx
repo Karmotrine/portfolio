@@ -4,7 +4,6 @@ import gql from "graphql-tag"
 import { useBlog } from "../../lib/hooks/useBlog"
 import { MDXRemote } from "next-mdx-remote"
 import { serialize } from 'next-mdx-remote/serialize'
-import Test from "../../components/Test"
 import Container from "../../components/Container"
 import { Suspense } from "react"
 import Badge from "../../components/Badge"
@@ -12,7 +11,7 @@ import Image from "next/image"
 import rehypePrism from 'rehype-prism-plus';
 import rehypeCodeTitles from 'rehype-code-titles';
 
-const mdComponents = { Test }
+const mdComponents = { }
 
 async function fetchAllBlogs() {
     const endpoint = process.env.NEXT_PUBLIC_SANITY_GRAPHQL_API || ""

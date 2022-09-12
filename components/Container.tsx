@@ -7,6 +7,8 @@ import cn from 'classnames';
 import Footer from './Footer';
 import NavButton from './NavButton';
 import { HOME, GUESTBOOK, BLOG, PROJECTS } from "./ContainerIcons"
+import { AnimatePresence, motion } from 'framer-motion';
+import MobileNav from './MobileNav';
 
 interface TNavItem {
     href : string
@@ -14,7 +16,7 @@ interface TNavItem {
     icon : ReactNode
 }
 
-const NAV_LINKS = [
+export const NAV_LINKS = [
     {
         href: "/", 
         name: "Home",
@@ -67,6 +69,12 @@ export default function Container(props:any) {
      */
     useEffect(() => setMounted(true), []);
 
+    const variants = {
+        hidden: { opacity: 0, x: -200, y: 0 },
+        enter: { opacity: 1, x: 0, y: 0 },
+        exit: { opacity: 0, x: 0, y: -100 },
+    }
+
     const router = useRouter();
     const { children, ...customMeta } = props;
     const meta = {
@@ -113,18 +121,23 @@ export default function Container(props:any) {
                                 <NavItem key={`NavItem#${key}`} href={item.href} name={item.name} icon={item.icon}/>
                             ))}
                         </div>
-                        {/* <MobileMenu /> */}
+                        {/* {<MobileNav/>} */}
                         </div>
                     </nav>
                 </div>
-                <main
+                <motion.main
                     id="skip"
+                    initial="hidden"
+                    animate="enter"
+                    exit="exit"
+                    variants={variants}
+                    transition={{ type: 'spring', damping: 30 }}
                     className="flex flex-col justify-center px-8 bg-grid bg-szgrid" /* bg-gray-250 dark:bg-gray-900 */
                 >
                     <div className="min-h-screen">
                     {children}
                     </div>
-                </main>
+                </motion.main>
             </div>
             <Footer/>
         </>

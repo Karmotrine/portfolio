@@ -5,6 +5,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { useEffect, useState } from 'react';
 import { supabase } from "../lib/supabase"
 import { ThemeProvider } from 'next-themes';
+import { AnimatePresence } from 'framer-motion';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(() => new QueryClient());
@@ -19,7 +20,13 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
       <QueryClientProvider client={queryClient}>
         <Hydrate state={pageProps.dehydratedState}>
+        <AnimatePresence
+          mode="wait"
+          initial={false}
+          onExitComplete={() => window.scrollTo(0, 0)}
+        >
           <Component {...pageProps} />
+        </AnimatePresence>
         </Hydrate>
       </QueryClientProvider>
   )

@@ -43,8 +43,8 @@ const Home: NextPage = () => {
         </div>
         </InnerContainer>
         {<TechStack />}
-        <InnerContainer title="Featured Projects">Test</InnerContainer>
-        <InnerContainer title="Featured Posts">Test</InnerContainer>
+{/*         <InnerContainer title="Featured Projects">Test</InnerContainer>
+        <InnerContainer title="Featured Posts">Test</InnerContainer> */}
         </div> 
       </Container>
     </Suspense>

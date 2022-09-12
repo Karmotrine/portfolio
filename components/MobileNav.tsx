@@ -33,8 +33,8 @@ export default function Test() {
         <>
             <button onClick={() => setMenuOpen(!menuOpen)} className="relative">open</button>
             {menuOpen && 
-            <div className={`fixed z-[100] bg-gray-250 w-screen h-screen left-0 top-0 mt-12`}>
-                <ul className="flex flex-col justify-start items-start max-w-2xl bg-yellow-200 px-8 py-12">
+            <div className={`fixed z-[100] bg-gray-250 w-screen h-screen left-0 top-0 `}>
+                <ul className="flex flex-col justify-start items-start max-w-2xl bg-yellow-200 px-8 py-12 ">
                     {NAV_LINKS.map((item,key) => 
                         <NavItem key={`Mobile_NavItem#${key}`} href={item.href} name={item.name} icon={item.icon}/>
                     )}
