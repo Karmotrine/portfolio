@@ -20,11 +20,13 @@ const NAV_LINKS = [
         name: "Home",
         icon: HOME,
     },
+    /*
     {
         href: "/guestbook", 
         name:"Guestbook",
         icon: GUESTBOOK,
     },
+    */
     {
         href: "/blog", 
         name:"Blog",
@@ -44,13 +46,13 @@ function NavItem({href, name, icon} : TNavItem) {
 
     return (
         <NextLink href={href}>
-            <div className="hidden cursor-pointer h-1/8 group md:flex flex-1 border-y-2 border-transparent transition-border-width py-0.5 duration-500 ease-linear hover:border-brown-800 hover:py-0.5">
+            <div className="hidden cursor-pointer relative h-1/8 group md:flex w-32 border-y-2 border-transparent transition-border-width py-0.5 duration-500 ease-linear hover:border-brown-800 hover:py-0.5">
                 <div className="h-1/8 transition-slowest ease z-10 w-0 bg-brown-800 transition-width duration-200 ease-in-and-out group-hover:w-full">
                     <div className="z-20 flex flex-row space-x-8 p-2">
-                        <div className="absolute h-6 w-6 place-content-center group-hover:text-white">
+                        <div className="absolute h-6 w-6 place-content-center">
                             {icon}
                         </div>
-                    <a className="absolute font-lato font-bold text-brown-800 group-hover:text-gray-250">{name}</a>
+                    <p className="absolute font-lato font-bold text-brown-800 group-hover:text-gray-250">{name}</p>
                     </div>
                 </div>
                 <div className="group h-10 flex-1 bg-beige-400 group-hover:bg-transparent"></div>
@@ -79,6 +81,9 @@ export default function Container(props:any) {
             <div className="bg-grid bg-szgrid bg-transparent"> {/* bg-gray-250 dark:bg-gray-900 */}
         <Head>
             <title>{meta.title}</title>
+            <link rel="preload" href="fonts/lato-regular.woff2" as="font" crossOrigin='' type="font/woff2" />
+            <link rel="preload" href="fonts/lato-bold.woff2" as="font" crossOrigin='' type="font/woff2" />
+            <link rel="preload" href="fonts/lato-italic.woff2" as="font" crossOrigin='' type="font/woff2" />
             <meta name="viewport" content="width=device-width, initial-scale=1"/>
             <meta name="robots" content="follow, index"/>
             <meta content={meta.description} name="description"/>

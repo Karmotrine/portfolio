@@ -107,7 +107,6 @@ export default function BlogCatalog({errorMsg, isError}:BlogProps) {
         setPage(pageParams !== undefined ? parseInt(pageParams!) : 1)
         refetch()
     }, [router.query,router.isReady, pageParams, refetch])
-    console.log(page)
     return (
         <>
             <Container>

@@ -58,6 +58,22 @@ a {
   src: local(''), url("/fonts/lato-italic.woff2") format('woff2');
 }
 
+::-moz-selection {
+  background-color: #bca484;
+  color: #e9e4de;
+}
+
+::-webkit-selection {
+  background: #bca484;
+  color: #e9e4de;
+}
+
+::selection {
+  background: #bca484;
+  color: #e9e4de;
+}
+
+
 /**
  * Gruvbox dark theme
  *

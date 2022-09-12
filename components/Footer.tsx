@@ -65,7 +65,7 @@ export default function Footer() {
                     </svg>
                 </a>
             </div>
-            <h6 className="pb-8 md:text-sm text-xs">© 2022 Yuan Ureña</h6>
+            <p className="pb-8 md:text-sm text-xs">© 2022 Yuan Ureña</p>
         </footer>
     )
 }

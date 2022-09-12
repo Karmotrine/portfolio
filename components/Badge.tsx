@@ -7,6 +7,6 @@ interface TBadge {
 
 export default function Badge(props:TBadge) {
     return (
-        <p className="px-1 leading-none text-xs uppercase font-bold text-gray-50 bg-amber-500 w-fit h-fit p-0.5">{props.children}</p>
+        <p className="px-1 leading-none text-xs uppercase font-bold text-gray-50 bg-main-50 w-fit h-fit p-0.5">{props.children}</p>
     )
 }

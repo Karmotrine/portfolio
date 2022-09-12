@@ -263,7 +263,7 @@ export default function TechStack() {
                                 <span
                                     key={item.tabCode}
                                     onClick={() => setOpenTab(item.tabCode)}
-                                    className={`${openTab === item.tabCode && "border-amber-300 border-b-4 py-1"} cursor-pointer leading-none py-2 text-sm text-white px-2 hover:bg-yellow-400 transition ease-linear`}
+                                    className={`${openTab === item.tabCode && "border-main-50 border-b-4 py-1"} cursor-pointer leading-none py-2 text-sm text-gray-250 px-2 hover:bg-main-50 transition ease-linear`}
                                 >
                                     {item.title}
                                 </span>

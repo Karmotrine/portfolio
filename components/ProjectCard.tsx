@@ -17,22 +17,24 @@ interface TProjectCard {
 export default function ProjectCard(props:TProjectCard) {
     return (
     <div className="w-full bg-transparent shadow-nier border-beige-400 border flex flex-col justify-between" >
-        <div className="flex flex-row h-fit bg-black w-full text-white py-1 pl-2 space-x-2 text-sm leading-none">
-            <div className="w-4 h-4 bg-brown-300"></div>
-            <h2>{props.title}</h2>
+        <div className="flex flex-row h-fit bg-gray-900/80 w-full text-white py-1 pl-2 space-x-2 text-sm leading-none">
+            <div className="w-4 h-4 bg-main-500"></div>
+            <h2 className="text-gray-250">{props.title}</h2>
         </div>
-        <div className=" min-w-full p-3 h-full">
-            <Image src={props.projImage.asset.url} alt={props.title} width="328" height="190"/>
-            <p className="text-sm font-lato">{props.description}</p>
-            <hr className="border bg-black border-black my-1"/>
-            <ul className="flex flex-row flex-wrap">
-                {props.stackTags.map((item, key)=> (<div key={key} className="mr-2 mb-1"><Badge >{item}</Badge></div>))}
-            </ul>
+        <div className="flex flex-col min-w-full p-3 h-full justify-between">
+            <div>
+                <Image src={props.projImage.asset.url} alt={props.title} width="328" height="190"/>
+                <p className="text-sm font-lato">{props.description}</p>
+                <hr className="border bg-black border-black my-1"/>
+                <ul className="flex flex-row flex-wrap">
+                    {props.stackTags.map((item, key)=> (<div key={key} className="mr-2 mb-1"><Badge >{item}</Badge></div>))}
+                </ul>
+            </div>
             <div className="justify-self-end flex flex-row mt-2">
                 <a href={props.siteUrl} rel="noopener noreferrer" target="_blank" className="w-full group h-8 mr-2">
-                    <div className="flex h-full justify-center bg-yellow-400 transition-all group-hover:bg-red-700">
-                        <div className="grid h-full w-11/12 place-content-center border-x-4 border-red-700 transition-all group-hover:border-yellow-400">
-                            Live Demo
+                    <div className="flex h-full justify-center bg-beige-400 transition-all group-hover:bg-gray-900/80">
+                        <div className="grid h-full w-11/12 place-content-center border-x-4 border-brown-800 transition-all group-hover:border-beige-400">
+                            <span className="text-brown-800 group-hover:text-beige-400 font-semibold">Live demo</span>
                         </div>
                     </div>
                 </a>
